@@ -1,39 +1,44 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import Clock from './Clock';
+import Toggle from './Toggle';
 import * as serviceWorker from './serviceWorker';
+
+// Resources
+// https://www.kirupa.com/react/creating_single_page_app_react_using_react_router.htm
+// https://reactjs.org/docs/handling-events.html
 
 function Welcome(props) {
   return <h1>Hello, {props.name} bitches</h1>;
 }
 
-function DateDisplay(props) {
-  return <input type="text" value={props.date}></input>
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.changeName = this.changeName.bind(this);
+    this.state = {name: "Jolo"}
+  }
+
+  changeName() {
+    this.setState(state => ({
+      name: state.name === "Jolo" ? "Balbin" : "Jolo"
+    }));
+  }
+
+  render() {
+    return (
+      <div>
+        <Welcome name={this.state.name} />
+        <Clock />
+        <Toggle changeName={this.changeName} />
+      </div>
+    );
+  }
 }
 
-function App() {
-  return (
-    <div>
-      <Welcome name={formatName(user)} />
-      <DateDisplay date={new Date().toLocaleTimeString()} />
-    </div>
-  );
-}
-
-function formatName(user) {
-  return user.firstName + ' ' + user.lastName;
-}
-
-const user = {
-  firstName: "Jolo",
-  lastName: "Balbin"
-};
-
-function tick() {
-  ReactDOM.render(<App />, document.getElementById('root'));
-}
-  
-setInterval(tick, 1000);
+ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
