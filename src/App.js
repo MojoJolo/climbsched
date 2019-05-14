@@ -1,26 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Navbar from './Navbar';
+import AddSched from './AddSched';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.toggleAddSched = this.toggleAddSched.bind(this);
+    this.state = {addSchedState: false}
+  }
+
+  toggleAddSched() {
+    this.setState(state => ({ addSchedState: !state.addSchedState }));
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <Navbar toggleAddSched={this.toggleAddSched} />
+        <AddSched addSchedState={this.state.addSchedState} />
+      </React.Fragment>
+    );
+  }
 }
 
 export default App;
