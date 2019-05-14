@@ -8,23 +8,17 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import LocationSelection from './LocationSelection';
 import SchedPicker from './SchedPicker';
+import DaysAndPersonField from './DaysAndPersonField';
 
 const styles = theme => ({
   card: {
     marginTop: 10,
     minWidth: 275,
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
+    maxWidth: window.innerWidth - theme.spacing.unit * 2,
   },
   title: {
     fontSize: 14,
     fontWeight: "bold",
-  },
-  pos: {
-    marginBottom: 12,
   },
   button: {
     marginTop: theme.spacing.unit,
@@ -44,7 +38,8 @@ class Scheduler extends React.Component {
           </Typography>
           <LocationSelection />
           <SchedPicker />
-          <Button variant="contained" size="large" fullWidth="true" color="primary" className={classes.button}>
+          <DaysAndPersonField />
+          <Button variant="contained" size="large" fullWidth={true} color="primary" className={classes.button}>
             Submit
           </Button>
         </CardContent>

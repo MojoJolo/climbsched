@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar';
 import AddSched from './AddSched';
+import Status from './Status';
 
 class App extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <Navbar toggleAddSched={this.toggleAddSched} />
+        <Status />
         <AddSched addSchedState={this.state.addSchedState} />
       </React.Fragment>
     );
